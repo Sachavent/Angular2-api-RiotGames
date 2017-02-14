@@ -9,6 +9,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 // import routing module
 import {AppRoutingModule} from './app-routing-module'
 
+// Get Account detail
+import {AccountService} from './account.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +23,7 @@ import {AppRoutingModule} from './app-routing-module'
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
