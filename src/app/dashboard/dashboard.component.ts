@@ -10,13 +10,17 @@ import {AccountService} from '../account.service';
 })
 export class DashboardComponent implements OnInit {
 
-  account: Account;
+  compte: Account;
 
   constructor(private accountService: AccountService) { }
 
   ngOnInit() {
     this.accountService.getAccountInformation()
-    .then(account => this.account= account)
+    .then(account => {
+      console.log("account: "+account.id);
+      this.compte= account;
+      console.log("compte: "+this.compte.id);
+  })
   }
 
 }

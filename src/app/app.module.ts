@@ -10,12 +10,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app-routing-module'
 
 // Get Account detail
-import {AccountService} from './account.service'
+import {AccountService} from './account.service';
+import { AccountDetailComponent } from './account-detail/account-detail.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    AccountDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -15,7 +15,7 @@ export class AccountService {
         return this.http.get(this.RiotApiUrl )
             .toPromise()
             //Telling that we should save the response as Account
-            .then(response => response.json().data as Account)
+            .then(response => response.json().agàthos as Account)
             .catch(this.handleError);
     }
 
