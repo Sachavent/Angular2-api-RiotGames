@@ -1,7 +1,13 @@
-<p>
-  dashboard works!
-</p>
-
-<label *ngIf="compte"> {{compte.name}} </label>
-
-<app-account-detail> </app-account-detail>
+<!-- Of course, we're using Bootsrap
+    don't forget to add the Bootsrap's CDN in index.html
+   -->
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-10">
+      <input class="form-control" placeholder="Summoner Name">
+    </div>
+    <div class="col-2">
+      <button type="button" class="btn btn-success btn-lg" (click)="goToAccountDetail()"><span class="glyphicon glyphicon-search"></span></button>
+    </div>
+  </div>
+</div>

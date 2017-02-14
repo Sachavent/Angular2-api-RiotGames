@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import {Account} from '../account';
-import {AccountService} from '../account.service';
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,17 +11,14 @@ import {AccountService} from '../account.service';
 })
 export class DashboardComponent implements OnInit {
 
-  compte: Account;
-
-  constructor(private accountService: AccountService) { }
+  constructor(private router: Router ) { }
 
   ngOnInit() {
-    this.accountService.getAccountInformation()
-    .then(account => {
-      console.log("account: "+account.id);
-      this.compte= account;
-      console.log("compte: "+this.compte.id);
-  })
-  }
+}
+
+goToAccountDetail() {
+  let link = ['detail'];
+  this.router.navigate(link);
+}
 
 }

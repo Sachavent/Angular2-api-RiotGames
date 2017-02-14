@@ -23,7 +23,7 @@ import { AccountDetailComponent } from './account-detail/account-detail.componen
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]
