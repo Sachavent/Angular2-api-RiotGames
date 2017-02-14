@@ -11,13 +11,19 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
+  compte: Account;
+
   constructor(private router: Router ) { }
 
   ngOnInit() {
 }
 
-goToAccountDetail() {
-  let link = ['detail'];
+goToAccountDetail(summonerName: string) {
+  // We add the summonerName from Input into the Url
+  /**
+   * WARNING: DONT FORGET : ToLowerCase() and Trim()
+   */
+  let link = ['detail', summonerName.toLocaleLowerCase().trim()];
   this.router.navigate(link);
 }
 

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
-import {AccountService} from '../account.service';
+import { AccountService } from '../account.service';
 
 import { Account } from '../account';
+
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-account-detail',
@@ -13,15 +16,15 @@ export class AccountDetailComponent implements OnInit {
 
   compte: Account;
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-     this.accountService.getAccountInformation()
-    .then(account => {
-      console.log("account: "+account.id);
-      this.compte= account;
-      console.log("compte: "+this.compte.id);
-  })
+    /** Getting account information from the Riot API */
+    this.route.params
+      .switchMap((params: Params) => this.accountService.getBasicAccountInformation(params['name']))
+      .subscribe(account => {
+           this.compte = account;
+      });
   }
 
 }

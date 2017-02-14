@@ -12,7 +12,8 @@ const routes: Routes = [
     {
         path: '', redirectTo: '/dashboard', pathMatch: 'full'
     }, {
-        path: 'detail', component: AccountDetailComponent 
+        // We add the "name" parameter
+        path: 'detail/:name', component: AccountDetailComponent 
     }
 ]
 

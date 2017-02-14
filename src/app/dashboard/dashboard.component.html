@@ -4,10 +4,16 @@
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col-10">
-      <input class="form-control" placeholder="Summoner Name">
+      <!-- Input area where the user can write his summonerName. 
+          Don't forget to use "#" to recieve the data
+       -->
+      <input #SummonerName class="form-control" (keyup)="0" placeholder="Summoner Name">
     </div>
     <div class="col-2">
-      <button type="button" class="btn btn-success btn-lg" (click)="goToAccountDetail()"><span class="glyphicon glyphicon-search"></span></button>
+      <!-- Get the Summoner name and load the detail page 
+           The property of buttons are from Bootsrap Documentation
+      -->
+      <button type="button" class="btn btn-success btn-lg" (click)="goToAccountDetail(SummonerName.value)"><span class="glyphicon glyphicon-search"></span></button>
     </div>
   </div>
 </div>
