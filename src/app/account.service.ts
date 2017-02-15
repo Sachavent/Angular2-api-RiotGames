@@ -52,6 +52,7 @@ export class AccountService {
                     /**Using push to create a Rank in the account" */
                     compte.ranks.push({
                         /**Creating a new rank that we push into the account */
+                        queue : entry.queue,
                         pallier: entry.tier,
                         division: entry.entries[0].division,
                         LP: entry.entries[0].leaguePoints,

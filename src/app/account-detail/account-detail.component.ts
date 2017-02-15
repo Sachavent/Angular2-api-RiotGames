@@ -15,6 +15,7 @@ import 'rxjs/add/operator/switchMap';
 export class AccountDetailComponent implements OnInit {
 
   compte: Account;
+  imgUrl: string;
 
   constructor(private accountService: AccountService, private route: ActivatedRoute) { }
 
@@ -29,8 +30,11 @@ export class AccountDetailComponent implements OnInit {
          */
         this.accountService.getAccountRank(account)
           .then(account => {
+            // Final account with basic information + ranks
             this.compte = account;
 
+            //Set the URL to get profile Icon 
+            this.imgUrl = `http://ddragon.leagueoflegends.com/cdn/7.3.2/img/profileicon/${this.compte.profileIconId}.png`;
           });
       });
 

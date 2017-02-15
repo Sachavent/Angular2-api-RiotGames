@@ -1,14 +1,17 @@
-<img src="http://ddragon.leagueoflegends.com/cdn/7.3.2/img/profileicon/718.png" width="42" height="42" />
-
+<img src={{imgUrl}}/>
 
 <div *ngIf="compte">
   <label> Name:  {{compte.name}} </label>
-  <label> Id: {{compte.id}} </label>
   <label> Level: {{compte.summonerLevel}} </label>
-  <label> profileIconId: {{compte.profileIconId}} </label>
 
   <!-- Display Summoner Rank -->
-  <li *ngFor="let rank of compte.ranks">
-      {{rank.division}}
-  </li>
+  <div class="list-group">
+    <p class="list-group-item active"> Ranks </p>
+    <li *ngFor="let rank of compte.ranks" class="list-group-item">
+      <img src={{imgUrl}}/>
+      <p>
+      {{rank.queue}} {{rank.pallier}} {{rank.division}} {{rank.LP}} LP
+      </p>
+    </li>
+  </div>
 </div>
