@@ -63,13 +63,13 @@ export class AccountService {
 
 
                 // 3V3
-               /* let rank3V3: Rank = new Rank();
+                let rank3V3: Rank = new Rank();
                 rank3V3.pallier = reponse[2]['tier'];
                 rank3V3.division = reponse[2]['entries'][0]['division'];
-                rank3V3.LP = reponse[2]['enétries'][0]['leaguePoints'];
+                rank3V3.LP = reponse[2]['entries'][0]['leaguePoints'];
                 rank3V3.victoire = reponse[2]['entries'][0]['wins'];
                 rank3V3.defaite = reponse[2]['entries'][0]['losses'];
-                compte.rank3V3 = rank3V3;*/
+                compte.rank3V3 = rank3V3;
 
                 return compte;
             })
