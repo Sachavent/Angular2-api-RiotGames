@@ -33,7 +33,6 @@ export class AccountService {
 
     // Get user rank
     getAccountRank(compte: Account): Promise<Account> {
-        console.log("id du compte: " + compte.id);
         let url = `${this.RiotApiUrl}/api/lol/euw/v2.5/league/by-summoner/${compte.id}/entry?api_key=RGAPI-650e27b6-8c7d-490b-a47d-afabc202e5b7`
 
         return this.http.get(url)
@@ -41,36 +40,26 @@ export class AccountService {
             //Telling that we should save the response as Account
             .then(response => {
 
-                let reponse = response.json()[compte.id];
-                /** Get Summoner Rank */
-                // SoloQ
-                let rankSoloQ: Rank = new Rank();
-                rankSoloQ.pallier = reponse[0]['tier'];
-                rankSoloQ.division = reponse[0]['entries'][0]['division'];
-                rankSoloQ.LP = reponse[0]['entries'][0]['leaguePoints'];
-                rankSoloQ.victoire = reponse[0]['entries'][0]['wins'];
-                rankSoloQ.defaite = reponse[0]['entries'][0]['losses'];
-                compte.rankSoloQ = rankSoloQ;
+                // Initialise at empty, to be sure of any security problem
+                compte.ranks = [];
 
-                // Flex
-                let rankFlex: Rank = new Rank();
-                rankFlex.pallier = reponse[1]['tier'];
-                rankFlex.division = reponse[1]['entries'][0]['division'];
-                rankFlex.LP = reponse[1]['entries'][0]['leaguePoints'];
-                rankFlex.victoire = reponse[1]['entries'][0]['wins'];
-                rankFlex.defaite = reponse[1]['entries'][0]['losses'];
-                compte.rankFlex = rankFlex;
+                /** Get Summoner Rank
+                 * We're using map to iterate
+                 */
+                response.json()[compte.id].map((entry) => {
+                    //console.log(entry);
 
-
-                // 3V3
-                let rank3V3: Rank = new Rank();
-                rank3V3.pallier = reponse[2]['tier'];
-                rank3V3.division = reponse[2]['entries'][0]['division'];
-                rank3V3.LP = reponse[2]['entries'][0]['leaguePoints'];
-                rank3V3.victoire = reponse[2]['entries'][0]['wins'];
-                rank3V3.defaite = reponse[2]['entries'][0]['losses'];
-                compte.rank3V3 = rank3V3;
-
+                    /**Using push to create a Rank in the account" */
+                    compte.ranks.push({
+                        /**Creating a new rank that we push into the account */
+                        pallier: entry.tier,
+                        division: entry.entries[0].division,
+                        LP: entry.entries[0].leaguePoints,
+                        victoire: entry.entries[0].wins,
+                        defaite: entry.entries[0].losses
+                    });
+                })
+                
                 return compte;
             })
             .catch(this.handleError);

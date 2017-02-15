@@ -5,9 +5,8 @@ export class Account {
     id: number;
     name: string;
     summonerLevel: number;
+    profileIconId: number;
 
     // Summoner Rank
-    rankSoloQ: Rank;
-    rankFlex: Rank;
-    rank3V3: Rank;
+    ranks: Array <Rank>;
 }

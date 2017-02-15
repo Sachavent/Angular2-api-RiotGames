@@ -25,7 +25,7 @@ export class AccountDetailComponent implements OnInit {
       .subscribe(account => {
 
         /** Get rank from the account choosen
-         * WARNING: We have to wait till we got the account
+         * WARNING: We have to wait until we got the account
          */
         this.accountService.getAccountRank(account)
           .then(account => {
