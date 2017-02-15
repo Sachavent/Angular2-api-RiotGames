@@ -21,10 +21,20 @@ export class AccountDetailComponent implements OnInit {
   ngOnInit() {
     /** Getting account information from the Riot API */
     this.route.params
-      .switchMap((params: Params) => this.accountService.getBasicAccountInformation(params['name']))
+      .switchMap((params: Params) => this.accountService.getAccountInformation(params['name']))
       .subscribe(account => {
-           this.compte = account;
+
+        /** Get rank from the account choosen
+         * WARNING: We have to wait till we got the account
+         */
+        this.accountService.getAccountRank(account)
+          .then(account => {
+            this.compte = account;
+
+          });
       });
+
+
   }
 
 }
