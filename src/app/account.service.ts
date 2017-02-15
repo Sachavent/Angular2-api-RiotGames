@@ -80,17 +80,21 @@ export class AccountService {
 
                 compte.champions = [];
                 response.json()['champions'].map((entry) => {
-                    compte.champions.push({
-                        id: entry.id,
-                        // Warning: Last id == 0 --> No name on this element
-                        name: this.getChampionName(entry.id),
-                        totalSessionsPlayed: entry.stats.totalSessionsPlayed,
-                        totalSessionsLost: entry.stats.totalSessionsLost,
-                        totalSessionsWon: entry.stats.totalSessionsWon
-                    });
+                    /**
+                     * WARNING: DONT GET THE ID == 0 : doesn't match to any champion
+                     */
+                    if (entry.id != 0) {
+                        compte.champions.push({
+                            id: entry.id,
+                            name: this.getChampionName(entry.id),
+                            totalSessionsPlayed: entry.stats.totalSessionsPlayed,
+                            totalSessionsLost: entry.stats.totalSessionsLost,
+                            totalSessionsWon: entry.stats.totalSessionsWon
+                        });
+                    }
                 })
 
-                console.log("nom champion: "+compte.champions[19].name);
+                console.log("nom champion: ", compte.champions[6].name);
 
                 return compte;
             })
@@ -99,11 +103,11 @@ export class AccountService {
 
     // Getting the champion name by id
     getChampionName(id: number): Promise<string> {
+        console.log ("id qu'on cherche: "+id);
         let url = `https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/${id}?api_key=RGAPI-650e27b6-8c7d-490b-a47d-afabc202e5b7`
         /** We're checking that id != 0 (which is the last element)
          * Indeed, id == 0 doesn't match any champion name
         */
-        if (id>0) {
         return this.http.get(url)
             .toPromise()
             .then(response => {
@@ -111,7 +115,6 @@ export class AccountService {
                 return response.json()['name'];
             }).catch(this.handleError)
             ;
-        } else { return; }
     }
 
     // In case of any error happend

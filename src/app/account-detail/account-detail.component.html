@@ -6,6 +6,11 @@
           <img src={{imgUrl}}/>
           <h1> {{compte.name}} </h1>
           <h2> Level: {{compte.summonerLevel}} </h2>
+          <!-- Display the most champion played -->
+          <li *ngFor="let champion of compte.champions">
+            {{champion.name.__zone_symbol__value}} {{champion.totalSessionsPlayed}}
+
+          </li>
         </div>
       </div>
     </div>

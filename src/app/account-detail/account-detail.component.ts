@@ -6,11 +6,12 @@ import { AccountService } from '../account.service';
 import { Account } from '../account';
 
 import 'rxjs/add/operator/switchMap';
+import { Pipe } from "@angular/core";
 
 @Component({
   selector: 'app-account-detail',
   templateUrl: './account-detail.component.html',
-  styleUrls: ['./account-detail.component.css']
+  styleUrls: ['./account-detail.component.css'],
 })
 export class AccountDetailComponent implements OnInit {
 
