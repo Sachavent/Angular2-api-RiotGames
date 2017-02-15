@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Account } from './account'
 import { Rank } from './rank'
+import { Champion } from './champion'
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
@@ -23,7 +24,6 @@ export class AccountService {
 
         return this.http.get(url)
             .toPromise()
-            //Telling that we should save the response as Account
             .then(response => {
                 // Json utilisation: to get an index: ["Name of index"]
                 return response.json()[summonerName];
@@ -52,7 +52,7 @@ export class AccountService {
                     /**Using push to create a Rank in the account" */
                     compte.ranks.push({
                         /**Creating a new rank that we push into the account */
-                        queue : entry.queue,
+                        queue: entry.queue,
                         pallier: entry.tier,
                         division: entry.entries[0].division,
                         LP: entry.entries[0].leaguePoints,
@@ -60,11 +60,58 @@ export class AccountService {
                         defaite: entry.entries[0].losses
                     });
                 })
-                
+
                 return compte;
             })
             .catch(this.handleError);
+    }
 
+
+    // Get Most-played champion
+    getChampionPlayed(compte: Account): Promise<Account> {
+        let url = `${this.RiotApiUrl}/api/lol/euw/v1.3/stats/by-summoner/${compte.id}/ranked?api_key=RGAPI-650e27b6-8c7d-490b-a47d-afabc202e5b7`
+
+        return this.http.get(url)
+            .toPromise()
+            .then(response => {
+                /**
+                 * Using the same way of getting User rank
+                */
+
+                compte.champions = [];
+                response.json()['champions'].map((entry) => {
+                    compte.champions.push({
+                        id: entry.id,
+                        // Warning: Last id == 0 --> No name on this element
+                        name: this.getChampionName(entry.id),
+                        totalSessionsPlayed: entry.stats.totalSessionsPlayed,
+                        totalSessionsLost: entry.stats.totalSessionsLost,
+                        totalSessionsWon: entry.stats.totalSessionsWon
+                    });
+                })
+
+                console.log("nom champion: "+compte.champions[19].name);
+
+                return compte;
+            })
+            .catch(this.handleError);
+    }
+
+    // Getting the champion name by id
+    getChampionName(id: number): Promise<string> {
+        let url = `https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/${id}?api_key=RGAPI-650e27b6-8c7d-490b-a47d-afabc202e5b7`
+        /** We're checking that id != 0 (which is the last element)
+         * Indeed, id == 0 doesn't match any champion name
+        */
+        if (id>0) {
+        return this.http.get(url)
+            .toPromise()
+            .then(response => {
+
+                return response.json()['name'];
+            }).catch(this.handleError)
+            ;
+        } else { return; }
     }
 
     // In case of any error happend

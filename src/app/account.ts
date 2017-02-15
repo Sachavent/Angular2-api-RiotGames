@@ -1,5 +1,6 @@
 // Create the object "account"
 import {Rank} from './rank';
+import { Champion } from './champion'
 
 export class Account {
     id: number;
@@ -9,4 +10,5 @@ export class Account {
 
     // Summoner Rank
     ranks: Array <Rank>;
+    champions: Array<Champion>;
 }
