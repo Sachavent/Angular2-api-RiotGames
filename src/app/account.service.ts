@@ -53,13 +53,13 @@ export class AccountService {
                 compte.rankSoloQ = rankSoloQ;
 
                 // Flex
-                /*let rankFlex: Rank = new Rank();
+                let rankFlex: Rank = new Rank();
                 rankFlex.pallier = reponse[1]['tier'];
                 rankFlex.division = reponse[1]['entries'][0]['division'];
                 rankFlex.LP = reponse[1]['entries'][0]['leaguePoints'];
                 rankFlex.victoire = reponse[1]['entries'][0]['wins'];
                 rankFlex.defaite = reponse[1]['entries'][0]['losses'];
-                compte.rankFlex = rankFlex;*/
+                compte.rankFlex = rankFlex;
 
 
                 // 3V3
