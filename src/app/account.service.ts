@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Account } from './account'
 import { Rank } from './rank'
-import { Champion } from './champion'
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
@@ -24,6 +23,7 @@ export class AccountService {
 
         return this.http.get(url)
             .toPromise()
+            //Telling that we should save the response as Account
             .then(response => {
                 // Json utilisation: to get an index: ["Name of index"]
                 return response.json()[summonerName];
@@ -52,7 +52,7 @@ export class AccountService {
                     /**Using push to create a Rank in the account" */
                     compte.ranks.push({
                         /**Creating a new rank that we push into the account */
-                        queue: entry.queue,
+                        queue : entry.queue,
                         pallier: entry.tier,
                         division: entry.entries[0].division,
                         LP: entry.entries[0].leaguePoints,
@@ -60,12 +60,12 @@ export class AccountService {
                         defaite: entry.entries[0].losses
                     });
                 })
-
+                
                 return compte;
             })
             .catch(this.handleError);
-    }
 
+    }
 
     // Get Most-played champion
     getChampionPlayed(compte: Account): Promise<Account> {
@@ -116,6 +116,8 @@ export class AccountService {
             }).catch(this.handleError)
             ;
     }
+
+
 
     // In case of any error happend
     private handleError(error: any): Promise<any> {
