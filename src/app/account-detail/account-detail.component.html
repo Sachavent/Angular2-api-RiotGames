@@ -1,45 +1,54 @@
-<div class="container">
-  <div class="row justify-content-md-center">
-    <div class="panel panel-primary">
-      <div *ngIf="compte" class="panel-body">
-        <div>
-          <img src={{imgUrl}}/>
-          <h1> {{compte.name}} </h1>
-          <h2> Level: {{compte.summonerLevel}} </h2>
-          
-          <!-- Display all champion played in a table -->
-          <table class="table table-bordered">
-            <thead>
-              <tr >
-                <th class="text-primary"> Champions </th>
-                <th class="text-primary"> Game played</th>
-              </tr>
-            </thead>
-            <tbody *ngFor="let champion of compte.champions | OrderByGamePlayed">
-              <tr>
-                <td> {{champion.name.__zone_symbol__value}}</td>
-                <td> {{champion.totalSessionsPlayed}}</td>
-              </tr>
-            </tbody>
-          </table>
+<div class="row justify-content-md-center">
+  <div class="panel panel-primary">
+    <div *ngIf="compte" class="panel-body">
+      <div>
+        <img src={{imgUrl}}/>
+        <h1> {{compte.name}} </h1>
+        <h2> Level: {{compte.summonerLevel}} </h2>
+        <hr class="style1" >
+        <!-- Display all champion played in a table -->
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="text-primary"> Champions </th>
+              <th class="text-primary"> Game played</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let champion of compte.champions | OrderByGamePlayed">
+            <tr>
+              <td> {{champion.name.__zone_symbol__value}}</td>
+              <td> {{champion.totalSessionsPlayed}}</td>
+            </tr>
+          </tbody>
+        </table>
 
-        </div>
       </div>
     </div>
-    <br />
+  </div>
+  <br />
 
-    <!-- Display Summoner Rank -->
+  <!-- Display Summoner Rank -->
+  <div *ngIf="compte">
+    <div class="list-group">
+      <p class="list-group-item active"> Ranks </p>
+      <li *ngFor="let rank of compte.ranks" class="list-group-item">
+        <!-- Displaying the correct img depend of the summoner elo -->
+        <img src='../../assets/tier_icon/{{rank.pallier}}_{{rank.division}}.png' />
+        <p>
+          {{rank.queue}} {{rank.pallier}} {{rank.division}} {{rank.LP}} LP
+        </p>
+      </li>
+    </div>
+  </div>
+
+  <!-- Display most played champion --> 
     <div *ngIf="compte">
-      <div class="list-group">
-        <p class="list-group-item active"> Ranks </p>
-        <li *ngFor="let rank of compte.ranks" class="list-group-item">
-          <!-- Displaying the correct img depend of the summoner elo -->
-          <img src='../../assets/tier_icon/{{rank.pallier}}_{{rank.division}}.png' />
-          <p>
-            {{rank.queue}} {{rank.pallier}} {{rank.division}} {{rank.LP}} LP
-          </p>
-        </li>
-      </div>
+    <div class="list-group">
+      <p class="list-group-item active"> Champions Most-Played </p>
+      <li *ngFor="let champion of compte.champions | OrderByGamePlayed | slice:0:5" class="list-group-item">
+        <!-- Displaying the img of the champion -->
+        <img src='https://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/{{champion.name.__zone_symbol__value}}.png' />
+      </li>
     </div>
   </div>
 </div>

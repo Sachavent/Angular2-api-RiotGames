@@ -13,15 +13,16 @@ import {AppRoutingModule} from './app-routing-module'
 import {AccountService} from './account.service';
 import {AccountDetailComponent} from './account-detail/account-detail.component'
 
-// Orderby 
+// Different order pipe
 import {OrderByGamePlayed} from './orderpipe-gameplayed'
+
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     AccountDetailComponent,
-    OrderByGamePlayed
+    OrderByGamePlayed,
   ],
   imports: [
     BrowserModule,
