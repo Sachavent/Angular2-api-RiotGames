@@ -11,13 +11,17 @@ import {AppRoutingModule} from './app-routing-module'
 
 // Get Account detail
 import {AccountService} from './account.service';
-import { AccountDetailComponent } from './account-detail/account-detail.component'
+import {AccountDetailComponent} from './account-detail/account-detail.component'
+
+// Orderby 
+import {OrderByGamePlayed} from './orderpipe-gameplayed'
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    AccountDetailComponent
+    AccountDetailComponent,
+    OrderByGamePlayed
   ],
   imports: [
     BrowserModule,

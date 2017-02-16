@@ -6,15 +6,28 @@
           <img src={{imgUrl}}/>
           <h1> {{compte.name}} </h1>
           <h2> Level: {{compte.summonerLevel}} </h2>
-          <!-- Display the most champion played -->
-          <li *ngFor="let champion of compte.champions">
-            {{champion.name.__zone_symbol__value}} {{champion.totalSessionsPlayed}}
+          
+          <!-- Display all champion played in a table -->
+          <table class="table table-bordered">
+            <thead>
+              <tr >
+                <th class="text-primary"> Champions </th>
+                <th class="text-primary"> Game played</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let champion of compte.champions | OrderByGamePlayed">
+              <tr>
+                <td> {{champion.name.__zone_symbol__value}}</td>
+                <td> {{champion.totalSessionsPlayed}}</td>
+              </tr>
+            </tbody>
+          </table>
 
-          </li>
         </div>
       </div>
     </div>
     <br />
+
     <!-- Display Summoner Rank -->
     <div *ngIf="compte">
       <div class="list-group">
@@ -29,3 +42,4 @@
       </div>
     </div>
   </div>
+</div>

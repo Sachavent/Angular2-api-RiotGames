@@ -4,9 +4,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { AccountService } from '../account.service';
 
 import { Account } from '../account';
+import { Champion } from '../champion'
 
 import 'rxjs/add/operator/switchMap';
-import { Pipe } from "@angular/core";
 
 @Component({
   selector: 'app-account-detail',
@@ -45,7 +45,7 @@ export class AccountDetailComponent implements OnInit {
                 this.imgUrl = `http://ddragon.leagueoflegends.com/cdn/7.3.2/img/profileicon/${this.compte.profileIconId}.png`;
 
               });
-         
+
           });
       });
 
