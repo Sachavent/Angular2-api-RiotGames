@@ -14,7 +14,8 @@ import {AccountService} from './account.service';
 import {AccountDetailComponent} from './account-detail/account-detail.component'
 
 // Different order pipe
-import {OrderByGamePlayed} from './orderpipe-gameplayed'
+import {OrderByGamePlayed} from './orderpipe-gameplayed';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {OrderByGamePlayed} from './orderpipe-gameplayed'
     DashboardComponent,
     AccountDetailComponent,
     OrderByGamePlayed,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
