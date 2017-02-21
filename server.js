@@ -20,7 +20,7 @@ app.use(express.static(__dirname + '/dist'));
 // For all GET requests, send back index.html
 // so that PathLocationStrategy can be used
 app.get('/*', function (req, res) {
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', 'https://lol-data-angular2.herokuapp.com');
     res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'accept, content-type, x-parse-application-id, x-parse-rest-api-key, x-parse-session-token');
     res.header('Access-Control-Allow-Credentials', true);
