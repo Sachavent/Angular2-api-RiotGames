@@ -2,8 +2,6 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
@@ -11,7 +9,6 @@ var bodyParser = require('body-parser');
 // in the dist directory
 app.use(express.static(__dirname + '/dist'));
 
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
