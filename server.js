@@ -6,11 +6,9 @@ const path = require('path');
 /**
  * Resolving the problem of "No Access allow origin"
  */
-app.use(function (req, res, next) {
+app.get('/*',function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'https://lol-data-angular2.herokuapp.com/');
     res.header('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     next();
 }
 );
@@ -26,4 +24,4 @@ app.get('/*', function (req, res) {
 });
 // Start the app by listening on the default
 // Heroku port
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 4200);
