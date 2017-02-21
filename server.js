@@ -6,12 +6,13 @@ const path = require('path');
 /**
  * Resolving the problem of "No Access allow origin"
  */
-app.use(function(req, res, next) {
+app.configure( function() {
+    app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
 });
-
+})
 
 // Run the app by serving the static files
 // in the dist directory
