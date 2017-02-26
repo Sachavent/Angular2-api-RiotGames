@@ -19,7 +19,7 @@ export class AccountService {
          */
 
         summonerName = summonerName.toLocaleLowerCase().trim();
-        let url = `${this.RiotApiUrl}/api/lol/euw/v1.4/summoner/by-name/${summonerName}?api_key=RGAPI-650e27b6-8c7d-490b-a47d-afabc202e5b7`
+        let url = `https://basic-api-node.herokuapp.com/summoneraccount/${summonerName}`
 
         return this.http.get(url)
             .toPromise()
