@@ -93,9 +93,6 @@ export class AccountService {
                         });
                     }
                 })
-
-                console.log("nom champion: ", compte.champions[6].name);
-
                 return compte;
             })
             .catch(this.handleError);
