@@ -2,11 +2,9 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const bodyParser = require('body-parser')
 
 // Run the app by serving the static files
 // in the dist directory
-app.use(express.bodyParser());
 app.use(express.static(__dirname + '/dist'));
 
 // For all GET requests, send back index.html
