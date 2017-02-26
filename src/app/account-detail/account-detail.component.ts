@@ -42,9 +42,7 @@ export class AccountDetailComponent implements OnInit {
                 this.compte = account;
 
                 //Set the URL to get profile Icon 
-                if (this.compte.profileIconId != null) {
                 this.imgUrl = `http://ddragon.leagueoflegends.com/cdn/7.3.2/img/profileicon/${this.compte.profileIconId}.png`;
-                }
 
               });
 
