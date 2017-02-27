@@ -8,6 +8,8 @@ const bodyParser = require('body-parser')
 // in the dist directory
 app.use(express.static(__dirname + '/dist'));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/dist/tier_icon/', express.static(__dirname + '/dist/tier_icon/'));
+
 
 
 // For all GET requests, send back index.html
