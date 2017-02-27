@@ -12,7 +12,7 @@ app.use(express.static(__dirname + '/dist'));
 // so that PathLocationStrategy can be used
 app.get('/*', function (req, res) {
 
-    fs.readFile(__dirname + '/dist/index.html', (err, data) => {
+    fs.readFile(__dirname + '/dist/assets/tier_icon', (err, data) => {
         if (err) throw err;
         console.log(data);
     });
