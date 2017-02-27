@@ -7,8 +7,11 @@ const bodyParser = require('body-parser')
 // Run the app by serving the static files
 // in the dist directory
 app.use(express.static(__dirname + '/dist'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/dist/tier_icon/', express.static(__dirname + '/dist/tier_icon/'));
+app.use(bodyParser.urlencoded({
+    keepExtensions: true,
+    limit: 10000000, // 10M limit
+    defer: true
+}));
 
 
 
