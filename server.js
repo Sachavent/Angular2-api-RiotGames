@@ -10,7 +10,6 @@ app.use(express.static(__dirname + '/dist'));
 app.use(bodyParser.urlencoded({
     keepExtensions: true,
     limit: 10000000, // 10M limit
-    defer: true
 }));
 
 
