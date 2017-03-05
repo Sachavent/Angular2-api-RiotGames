@@ -8,7 +8,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 
 export class AccountService {
-
+    private RiotApiUrl = 'https://euw.api.pvp.net';
     constructor(private http: Http) { }
 
     //Get Account basic information
@@ -39,7 +39,6 @@ export class AccountService {
             .toPromise()
             //Telling that we should save the response as Account
             .then(response => {
-
                 // Initialise at empty, to be sure of any security problem
                 compte.ranks = [];
 
@@ -52,15 +51,16 @@ export class AccountService {
                     /**Using push to create a Rank in the account" */
                     compte.ranks.push({
                         /**Creating a new rank that we push into the account */
-                        queue : entry.queue,
+                        queue: entry.queue,
                         pallier: entry.tier,
                         division: entry.entries[0].division,
                         LP: entry.entries[0].leaguePoints,
                         victoire: entry.entries[0].wins,
                         defaite: entry.entries[0].losses
                     });
+
                 })
-                
+
                 return compte;
             })
             .catch(this.handleError);
@@ -69,7 +69,7 @@ export class AccountService {
 
     // Get Most-played champion
     getChampionPlayed(compte: Account): Promise<Account> {
-        let url = `https://backend-lol-data.herokuapp.com/summoneraccount/${compte.id}/mostchampionsplayed`
+        let url = `${this.RiotApiUrl}/api/lol/euw/v1.3/stats/by-summoner/${compte.id}/ranked?api_key=RGAPI-650e27b6-8c7d-490b-a47d-afabc202e5b7`
 
         return this.http.get(url)
             .toPromise()
@@ -100,7 +100,7 @@ export class AccountService {
 
     // Getting the champion name by id
     getChampionName(id: number): Promise<string> {
-        let url = `https://backend-lol-data.herokuapp.com/champions/championName/${id}`
+        let url = `https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/${id}?api_key=RGAPI-650e27b6-8c7d-490b-a47d-afabc202e5b7`
         /** We're checking that id != 0 (which is the last element)
          * Indeed, id == 0 doesn't match any champion name
         */
