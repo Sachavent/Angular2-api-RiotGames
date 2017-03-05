@@ -69,8 +69,8 @@ export class AccountService {
 
     // Get Most-played champion
     getChampionPlayed(compte: Account): Promise<Account> {
-        let url = `${this.RiotApiUrl}/api/lol/euw/v1.3/stats/by-summoner/${compte.id}/ranked?api_key=RGAPI-650e27b6-8c7d-490b-a47d-afabc202e5b7`
-
+        let url = `https://backend-lol-data.herokuapp.com/summoneraccount/${compte.id}/mostchampionsplayed`
+        
         return this.http.get(url)
             .toPromise()
             .then(response => {
@@ -100,7 +100,7 @@ export class AccountService {
 
     // Getting the champion name by id
     getChampionName(id: number): Promise<string> {
-        let url = `https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/${id}?api_key=RGAPI-650e27b6-8c7d-490b-a47d-afabc202e5b7`
+        let url =  `https://backend-lol-data.herokuapp.com/champions/championName/${id}`
         /** We're checking that id != 0 (which is the last element)
          * Indeed, id == 0 doesn't match any champion name
         */
